@@ -91,7 +91,7 @@ Raw Data (48 GB, Pipe-delimited)
 └──────────┬──────────────┘
            ▼
 ┌─────────────────────────┐
-│  Phase 4: ML Showdown   │  Logistic Regression vs. XGBoost
+│  Phase 4: ML Showdown   │  Logistic Regression vs. Random Forest
 └─────────────────────────┘
 ```
 
@@ -139,12 +139,11 @@ This project involved end-to-end data mining and machine learning — from raw d
 ### 5. Model Training & Evaluation (Phase 4)
 - Trained **two contender models**:
   - **Logistic Regression** (traditional banking baseline) — with StandardScaler preprocessing
-  - **XGBoost** (advanced tree-based model) — with tuned hyperparameters
+  - **Random Forest** (ensemble tree-based model)
 - Evaluated using **multiple metrics** suited for imbalanced classification:
   - ROC-AUC, PR-AUC, F1-Score, Precision, Recall
 - Generated **Confusion Matrix visualizations** for both models
-- Performed **SHAP (SHapley Additive exPlanations) analysis** for model explainability — identifying which features most influence prepayment predictions
-- **Final result**: XGBoost outperformed Logistic Regression across all metrics on the out-of-time 2017 test set
+- **Final result**: Random Forest outperformed Logistic Regression across all metrics on the out-of-time 2017 test set
 
 ### 6. Total Scale of Data Processed
 | Metric | Value |
@@ -180,9 +179,9 @@ This project involved end-to-end data mining and machine learning — from raw d
   - **Test** (The Future): 2017 → 487,789 samples (natural imbalanced distribution)
 
 ### Phase 4 — Model Training & Evaluation (`modeltraining.ipynb`)
-- Trains Logistic Regression (baseline) and XGBoost (champion)
-- Evaluates using ROC-AUC, PR-AUC, F1-Score, Precision, Recall
-- SHAP-based explainability analysis
+- Loads the combined & balanced ML-ready datasets
+- Trains Logistic Regression (baseline) and Random Forest (champion)
+- Evaluates out-of-time performance on the 2017 cohort
 - Confusion matrix visualizations
 
 ---
@@ -206,17 +205,16 @@ This project involved end-to-end data mining and machine learning — from raw d
 
 ## Models & Results
 
-### Out-of-Time Validation Scoreboard (Test on 2017 data)
+### ML Showdown Results (2017 Out-of-Time Set)
+| Metric | Logistic Regression | Random Forest |
+|--------|---------------------|-----------------|
+| **ROC-AUC** | 0.5973 | 0.6961 |
+| **PR-AUC** | 0.7712 | 0.8847 |
+| **F1-Score** | 0.6396 | 0.7818 |
+| **Precision** | 0.7426 | 0.8074 |
+| **Recall** | 0.5617 | 0.6069 |
 
-| Metric | Logistic Regression | XGBoost (Tuned) |
-|--------|:------------------:|:---------------:|
-| **ROC-AUC** | 0.5349 | **0.5999** |
-| **PR-AUC** | 0.7370 | **0.7753** |
-| **F1-Score** | — | **0.7408** |
-| **Precision** | — | **0.7623** |
-| **Recall** | — | **0.7204** |
-
-> 🏆 **XGBoost** outperforms the traditional banking baseline across all metrics.
+> 🏆 **Random Forest** outperforms the traditional banking baseline across all metrics.
 
 ---
 
@@ -226,9 +224,8 @@ This project involved end-to-end data mining and machine learning — from raw d
 |----------|-------------|
 | **Language** | Python 3.10 |
 | **Data Processing** | pandas, NumPy |
-| **Visualization** | Matplotlib, Seaborn |
-| **Machine Learning** | scikit-learn, XGBoost, LightGBM |
-| **Explainability** | SHAP |
+| **EDA & Viz** | Matplotlib, Seaborn |
+| **Machine Learning** | scikit-learn, RandomForest, LightGBM |
 | **Imbalanced Data** | imbalanced-learn |
 | **Model Persistence** | joblib |
 | **Dashboard** | Streamlit |
