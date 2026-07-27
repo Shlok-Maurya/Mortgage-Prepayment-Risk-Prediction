@@ -1,0 +1,39 @@
+# ===== DATA FILES =====
+# Raw data files (hosted on Hugging Face)
+data/*.csv
+data/processed/*.csv
+
+# HuggingFace upload workspace
+hf_upload/
+
+# ===== PYTHON =====
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ===== JUPYTER =====
+.ipynb_checkpoints/
+
+# ===== ENVIRONMENT =====
+.env
+.venv/
+venv/
+env/
+*.env
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== OS =====
+Thumbs.db
+.DS_Store
+Desktop.ini
